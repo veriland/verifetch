@@ -1,0 +1,67 @@
+{
+  "name": "verifetch",
+  "displayName": "VeriFetch",
+  "publisher": "veriland",
+  "description": "Execute Dataverse FetchXML natively in a Unified Webview Workspace.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "verifetch.connect",
+        "title": "VeriFetch: Connect to Dataverse"
+      },
+      {
+        "command": "verifetch.openWorkspace",
+        "title": "VeriFetch: Open Query Workspace"
+      },
+      {
+        "command": "verifetch.execute",
+        "title": "VeriFetch: Run Query",
+        "icon": "$(play)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceLangId == xml",
+          "command": "verifetch.execute",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "editorHasSelection || resourceLangId == xml",
+          "command": "verifetch.execute",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^2.6.4",
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veriland/verifetch"
+  }
+}
